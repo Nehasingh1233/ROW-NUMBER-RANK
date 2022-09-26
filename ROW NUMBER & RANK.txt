@@ -1,0 +1,24 @@
+create table NA_EMPLOYEES001(
+emp_id int primary key ,
+emp_name varchar(20),
+emp_phone varchar(20),
+emp_age int  check(emp_age>=18),
+emp_address varchar(20) default 'not provided'
+);
+
+insert into NA_EMPLOYEES001 values (100,'x','56778766',18,'not provided')
+insert into NA_EMPLOYEES001 values (101,'y','1111766',19,'not provided')
+insert into NA_EMPLOYEES001 values (102,'c','3338766',20,'not provided')
+
+
+select emp_id,emp_name,emp_phone,emp_age,emp_address,
+row_number() over (order by emp_id) as ROW_NUMBER 
+from NA_EMPLOYEES001 
+
+select emp_id,emp_name,emp_phone,emp_age,emp_address,
+rank() over (order by emp_id) as Rank 
+from NA_EMPLOYEES001 
+
+select emp_id,emp_name,emp_phone,emp_age,emp_address,
+dense_rank() over (order by emp_id) as dense_rank
+from NA_EMPLOYEES001 
